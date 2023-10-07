@@ -61,7 +61,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
    - Provide a valid command using echo and pipe it to the executable file.
 
 ```bash
-echo "/bin/ls" | ./hsh
+echo "/bin/ls" | ./simple_shell
 ```
 
 ## Examples
