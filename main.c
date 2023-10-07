@@ -16,7 +16,7 @@ int main(void)
 	int is_terminal = isatty(STDIN_FILENO), flag = 1, status_code = 0, space;
 
 	call_signal();
-	while (1)
+	while (1 && flag)
 	{
 		flag = is_terminal;
 		if (is_terminal)
