@@ -12,11 +12,12 @@ void cd_builtin(char **args, int argc, char *command)
 {
 	char *directory = args[1];
 	int ret;
+	char *full_path;
 
 	(void)argc;
 	(void)command;
-	/* If no argument is provided, change to HOME directory */
 
+	/* If no argument is provided or argument is ~, change to HOME directory */
 	if (argc == 1 || _strcmp(args[1], "~") == 0)
 	{
 		directory = _getenv("HOME");
@@ -32,5 +33,13 @@ void cd_builtin(char **args, int argc, char *command)
 	{
 		perror("cd");
 	}
+
+	full_path = getcwd(NULL, 0);
+	if (full_path == NULL)
+	{
+		perror("getcwd");
+		return;
+	}
+	setenv("PWD", full_path, 1);
 }
 

@@ -41,10 +41,6 @@ char *_getenv(const char *name)
 
 void setenv_builtin(char **args, int argc, char *command)
 {
-	char *existingenv;
-	char **temp;
-	char *buf = NULL;
-	int elems = count_elements(environ), i;
 	(void)command;
 
 	if (argc != 3)
@@ -52,34 +48,11 @@ void setenv_builtin(char **args, int argc, char *command)
 		_puts("setenv: Invalid number of arguments\n");
 		return;
 	}
-	existingenv = _getenv(args[1]);
-	if (existingenv != NULL)
-	{
-		_strcpy(existingenv, "");
-		_strcat(existingenv, args[2]);
-		return;
-	}
-	buf = malloc((_strlen(args[1]) + _strlen(args[2]) + 2) * sizeof(char));
 
-	_strcpy(buf, args[1]);
-	_strcat(buf, "=");
-	_strcat(buf, args[2]);
-
-	temp = malloc(sizeof(char *) * (elems + 2));
-	if (temp == NULL)
+	if (setenv(args[1], args[2], 1) != 0)
 	{
-		perror("Memory allocation failed\n");
-		free(buf);
-		return;
+		puts("Failed to set environment variable\n");
 	}
-	for (i = 0; i < elems; i++)
-	{
-		temp[i] = environ[i];
-	}
-
-	temp[elems] = buf;
-	temp[elems + 1] = NULL;
-	environ = temp;
 }
 
 /**
@@ -89,15 +62,17 @@ void setenv_builtin(char **args, int argc, char *command)
  * @command: The built-in command (unused in this function).
  */
 
-void _unsetenv(char **args, int argc, char *command __attribute__((unused)))
+void _unsetenv(char **args, int argc, char *command)
 {
 	int i, j, n;
 	int variableRemoved = 0;
 	char *currentEnvVar;
 
+	(void)command;
+
 	if (argc != 2)
 	{
-		perror(args[0]);
+		_puts("unsetenv: Invalid number of arguments\n");
 		return;
 	}
 
@@ -121,7 +96,6 @@ void _unsetenv(char **args, int argc, char *command __attribute__((unused)))
 
 	if (!variableRemoved)
 	{
-		perror(args[1]);
+		_puts("unsetenv: Environment variable provided does not exist\n");
 	}
 }
-
