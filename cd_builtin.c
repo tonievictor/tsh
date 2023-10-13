@@ -41,5 +41,6 @@ void cd_builtin(char **args, int argc, char *command)
 		return;
 	}
 	setenv("PWD", full_path, 1);
+	free(full_path);
 }
 
