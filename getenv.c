@@ -51,7 +51,7 @@ void setenv_builtin(char **args, int argc, char *command)
 
 	if (setenv(args[1], args[2], 1) != 0)
 	{
-		puts("Failed to set environment variable\n");
+		_puts("Failed to set environment variable\n");
 	}
 }
 
