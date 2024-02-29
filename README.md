@@ -20,13 +20,13 @@ A simple Unix shell written in C that supports both interactive and non-interact
 
 ### Installation
 
-- **Clone the repository**
+**Clone the repository**
 
 ```bash
 git clone https://github.com/Tonie-NG/simple_shell.git
 ```
 
-- **Change directory to the project:**
+**Change directory to the project:**
 
 ```bash
 cd simple_shell
@@ -34,7 +34,7 @@ cd simple_shell
 
 ### Compiling
 
-- **Compile the shell using the following command:**
+Compile the shell using the following command:
 
 ```bash
 gcc *.c -o simple_shell
@@ -50,7 +50,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 
 1. Interactive Mode:
 
-   - Simply run the executable, and the shell will start accepting commands.
+Simply run the executable, and the shell will start accepting commands.
 
 ```bash
 ./simple_shell
@@ -58,7 +58,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 
 2. Non-Interactive Mode:
 
-   - Provide a valid command using echo and pipe it to the executable file.
+Provide a valid command using echo and pipe it to the executable file.
 
 ```bash
 echo "/bin/ls" | ./simple_shell
@@ -68,37 +68,35 @@ echo "/bin/ls" | ./simple_shell
 
 1. **Interactive Mode:**
 
-   - To start the shell:
+To start the shell:
 
    ```bash
    ./simple_shell
    ```
 
-   - Provide the command path:
+Provide the command path:
 
-     ```bash
-     $ /bin/ls
-     $ /bin/ls -l
-     ```
+```bash
+/bin/ls
+/bin/ls -l
+```
 
-   - You can also provide the command, and the shell handles the full path:
-     ```bash
-     $ ls
-     $ pwd
-     $ exit
-     ```
+You can also provide the command, and the shell handles the full path:
+```bash
+ls
+pwd
+exit
+```
 
 2. **Non-interactive mode:**
 
-   - Provide the command path via pipe:
+Provide the command path via pipe:
 
-   ```bash
-   echo "/bin/ls" | ./simple_shell
-   ```
+```bash
+echo "/bin/ls" | ./simple_shell
+```
 
-   - Provide the command and the shell handles the path
-
-   ```bash
-   echo "ls" | ./simple_shell
-   ```
-
+Provide the command and the shell handles the path
+```bash
+echo "ls" | ./simple_shell
+```
