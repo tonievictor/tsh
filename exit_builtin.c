@@ -1,5 +1,7 @@
 #include "main.h"
 #include "utilities.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * exit_builtin - Handle the 'exit' built-in command.
@@ -14,33 +16,37 @@
  * @args and @command are freed before exiting the program.
  */
 
-void exit_builtin(char **args, int argc, char *command)
-{
-	int status = 0;
+void exit_builtin(char **args, int argc, char *command) {
+  int status = 0;
 
-	(void)argc;
+  (void)argc;
 
-	if (args[1] != NULL)
-	{
-		status = _atoi(args[1]);
-		if (status != 1)
-		{
-			free(args);
-			free(command);
-			args = NULL;
-			command = NULL;
-			exit(status);
-		}
-		errno = 2;
-		perror("Illegal number");
-		return;
-	}
+  if (args[1] != NULL) {
+    status = _atoi(args[1]);
+    if (status != 1) {
+      if (envfreesignal == 1) {
+        free(environ);
+        free(newvariable);
+      }
+      free(args);
+      free(command);
+      args = NULL;
+      command = NULL;
+      exit(status);
+    }
+    errno = 2;
+    perror("Illegal number");
+    return;
+  }
 
-	status = errno;
-	free(args);
-	free(command);
-	args = NULL;
-	command = NULL;
-	exit(status);
+  if (envfreesignal == 1) {
+    free(environ);
+    free(newvariable);
+  }
+  status = errno;
+  free(args);
+  free(command);
+  args = NULL;
+  command = NULL;
+  exit(status);
 }
-

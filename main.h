@@ -3,16 +3,17 @@
 
 #include "unistd.h"
 #include <errno.h>
+#include <signal.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <signal.h>
-#include <stddef.h>
-#include <ctype.h>
+#include <unistd.h>
 extern char **environ;
+extern char *newvariable;
+extern int envfreesignal;
 
 #define MAX_PATH_LENGTH 1024
 
@@ -36,10 +37,9 @@ void exec_and_free(char *command, char **tokens, char *directory);
  * @function: A pointer to the function that implements the comand
  */
 
-struct builtin
-{
-	char *name;
-	void (*function)(char **args, int argc, char *command);
+struct builtin {
+  char *name;
+  void (*function)(char **args, int argc, char *command);
 };
 
 typedef struct builtin BuiltInCommand;
@@ -56,4 +56,3 @@ void call_signal(void);
 char *get_input(void);
 
 #endif
-
