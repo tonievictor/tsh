@@ -5,18 +5,16 @@
  * @src: source
  * Return: pointer to dest
  */
-char *_strcpy(char *dest, char *src)
-{
-	int c = 0;
+char *_strcpy(char *dest, char *src) {
+  int c = 0;
 
-	while (c >= 0)
-	{
-		*(dest + c) = *(src + c);
-		if (*(src + c) == '\0')
-			break;
-		c++;
-	}
-	return (dest);
+  while (c >= 0) {
+    *(dest + c) = *(src + c);
+    if (*(src + c) == '\0')
+      break;
+    c++;
+  }
+  return (dest);
 }
 
 /**
@@ -30,20 +28,17 @@ char *_strcpy(char *dest, char *src)
  * be greater than @s2.
  */
 
-int _strcmp(char *s1, char *s2)
-{
-	int v;
+int _strcmp(char *s1, char *s2) {
+  int v;
 
-	v = 0;
-	while (s1[v] != '\0' && s2[v] != '\0')
-	{
-		if (s1[v] != s2[v])
-		{
-			return (s1[v] - s2[v]);
-		}
-		v++;
-	}
-	return (0);
+  v = 0;
+  while (s1[v] != '\0' && s2[v] != '\0') {
+    if (s1[v] != s2[v]) {
+      return (s1[v] - s2[v]);
+    }
+    v++;
+  }
+  return (0);
 }
 
 /**
@@ -52,23 +47,20 @@ int _strcmp(char *s1, char *s2)
  * @src: source
  * Return: the pointer to dest
  */
-char *_strcat(char *dest, char *src)
-{
-	int c1 = 0, c2 = 0;
+char *_strcat(char *dest, char *src) {
+  int c1 = 0, c2 = 0;
 
-	while (*(dest + c1) != '\0')
-	{
-		c1++;
-	}
-	while (c2 >= 0)
-	{
-		*(dest + c1) = *(src + c2);
-		if (*(src + c2) == '\0')
-			break;
-		c1++;
-		c2++;
-	}
-	return (dest);
+  while (*(dest + c1) != '\0') {
+    c1++;
+  }
+  while (c2 >= 0) {
+    *(dest + c1) = *(src + c2);
+    if (*(src + c2) == '\0')
+      break;
+    c1++;
+    c2++;
+  }
+  return (dest);
 }
 
 /**
@@ -79,16 +71,14 @@ char *_strcat(char *dest, char *src)
  * Return: The number of elements in the array.
  */
 
-int count_elements(char **array)
-{
-	int count = 0;
+int count_elements(char **array) {
+  int count = 0;
 
-	while (array[count] != NULL)
-	{
-		count++;
-	}
+  while (array[count] != NULL) {
+    count++;
+  }
 
-	return (count);
+  return (count);
 }
 
 /**
@@ -96,17 +86,13 @@ int count_elements(char **array)
  * @command: user input to check
  */
 
-void remove_comments(char *command)
-{
-	int i;
+void remove_comments(char *command) {
+  int i;
 
-	for (i = 0; command[i] != '\0'; i++)
-	{
-		if (command[i] == '#' && (!i || command[i - 1] == ' '))
-		{
-			command[i] = '\0';
-			break;
-		}
-	}
+  for (i = 0; command[i] != '\0'; i++) {
+    if (command[i] == '#' && (!i || command[i - 1] == ' ')) {
+      command[i] = '\0';
+      break;
+    }
+  }
 }
-

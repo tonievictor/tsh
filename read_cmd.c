@@ -8,21 +8,18 @@
  * or NULL if an error occurs or the end of input is reached.
  */
 
-char *read_command(void)
-{
-	char *line = NULL;
-	size_t length = 0;
-	ssize_t read;
+char *read_command(void) {
+  char *line = NULL;
+  size_t length = 0;
+  ssize_t read;
 
-	read = getline(&line, &length, stdin);
+  read = getline(&line, &length, stdin);
 
-	if (read == -1)
-	{
-		free(line);
-		line = NULL;
-		return (line);
-	}
-	line[read - 1] = '\0';
-	return (line);
+  if (read == -1) {
+    free(line);
+    line = NULL;
+    return (line);
+  }
+  line[read - 1] = '\0';
+  return (line);
 }
-

@@ -6,17 +6,15 @@
  *
  * Return: Void
  */
-void _puts(char *str)
-{
-	size_t len;
-	ssize_t num_written;
+void _puts(char *str) {
+  size_t len;
+  ssize_t num_written;
 
-	len = _strlen(str);
-	num_written = write(STDOUT_FILENO, str, len);
-	if (num_written == -1)
-	{
-		perror("write");
-	}
+  len = _strlen(str);
+  num_written = write(STDOUT_FILENO, str, len);
+  if (num_written == -1) {
+    perror("write");
+  }
 }
 
 /**
@@ -25,8 +23,4 @@ void _puts(char *str)
  *
  * Return: Void
  */
-int _puterror(char *err)
-{
-	return (write(2, err, 1));
-}
-
+int _puterror(char *err) { return (write(2, err, 1)); }

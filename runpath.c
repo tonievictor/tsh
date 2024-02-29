@@ -14,43 +14,36 @@
  * Return: the status
  */
 
-int runpathcmd(char *command, char **tokens)
-{
-	pid_t child_pid;
-	int status_code = 0;
+int runpathcmd(char *command, char **tokens) {
+  pid_t child_pid;
+  int status_code = 0;
 
-	child_pid = fork();
-	if (child_pid < 0)
-	{
-		perror("fork");
-		return (1);
-	}
-	if (child_pid == -1)
-	{
-		perror("fork");
-		free(command);
-		free(tokens);
-		command = NULL;
-		tokens = NULL;
-	}
-	if (child_pid == 0)
-	{
-		if (execve(tokens[0], tokens, NULL) == -1)
-		{
-			perror(command);
-			freecommandspath(command, tokens);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		freecommandspath(command, tokens);
-		do {
-			waitpid(child_pid, &status_code, WUNTRACED);
-		} while (!WIFEXITED(status_code) && !WIFSIGNALED(status_code));
-	}
+  child_pid = fork();
+  if (child_pid < 0) {
+    perror("fork");
+    return (1);
+  }
+  if (child_pid == -1) {
+    perror("fork");
+    free(command);
+    free(tokens);
+    command = NULL;
+    tokens = NULL;
+  }
+  if (child_pid == 0) {
+    if (execve(tokens[0], tokens, NULL) == -1) {
+      perror(command);
+      freecommandspath(command, tokens);
+      exit(EXIT_FAILURE);
+    }
+  } else {
+    freecommandspath(command, tokens);
+    do {
+      waitpid(child_pid, &status_code, WUNTRACED);
+    } while (!WIFEXITED(status_code) && !WIFSIGNALED(status_code));
+  }
 
-	return (status_code);
+  return (status_code);
 }
 
 /**
@@ -60,12 +53,11 @@ int runpathcmd(char *command, char **tokens)
  * @tokens: The array of tokens to free.
  */
 
-void freecommandspath(char *command, char **tokens)
-{
-	free(command);
-	free(tokens);
-	command = NULL;
-	tokens = NULL;
+void freecommandspath(char *command, char **tokens) {
+  free(command);
+  free(tokens);
+  command = NULL;
+  tokens = NULL;
 }
 
 /**
@@ -78,44 +70,34 @@ void freecommandspath(char *command, char **tokens)
  *
  */
 
-int runpathlesscmd(char *command, char **tokens)
-{
-	pid_t child_pid;
-	char *path = getenv("PATH");
-	char *directory = find_command_in_path(path, tokens[0]);
-	int status_code = 0;
+int runpathlesscmd(char *command, char **tokens) {
+  pid_t child_pid;
+  char *path = getenv("PATH");
+  char *directory = find_command_in_path(path, tokens[0]);
+  int status_code = 0;
 
-	if (directory == NULL)
-	{
-		perror(command);
-		freecommands(command, tokens, directory);
-	}
-	else
-	{
-		child_pid = fork();
-		if (child_pid < 0)
-		{
-			perror("fork");
-			return (1);
-		}
-		if (child_pid == -1)
-		{
-			perror("fork");
-			freecommands(command, tokens, directory);
-		}
-		else if (child_pid == 0)
-		{
-			exec_and_free(command, tokens, directory);
-		}
-		else
-		{
-			freecommands(command, tokens, directory);
-			do {
-				waitpid(child_pid, &status_code, WUNTRACED);
-			} while (!WIFEXITED(status_code) && !WIFSIGNALED(status_code));
-		}
-	}
-	return (status_code);
+  if (directory == NULL) {
+    perror(command);
+    freecommands(command, tokens, directory);
+  } else {
+    child_pid = fork();
+    if (child_pid < 0) {
+      perror("fork");
+      return (1);
+    }
+    if (child_pid == -1) {
+      perror("fork");
+      freecommands(command, tokens, directory);
+    } else if (child_pid == 0) {
+      exec_and_free(command, tokens, directory);
+    } else {
+      freecommands(command, tokens, directory);
+      do {
+        waitpid(child_pid, &status_code, WUNTRACED);
+      } while (!WIFEXITED(status_code) && !WIFSIGNALED(status_code));
+    }
+  }
+  return (status_code);
 }
 
 /**
@@ -126,11 +108,10 @@ int runpathlesscmd(char *command, char **tokens)
  * @directory: the directory where the excutable file is
  */
 
-void freecommands(char *command, char **tokens, char *directory)
-{
-	free(command);
-	free(tokens);
-	free(directory);
+void freecommands(char *command, char **tokens, char *directory) {
+  free(command);
+  free(tokens);
+  free(directory);
 }
 
 /**
@@ -141,14 +122,11 @@ void freecommands(char *command, char **tokens, char *directory)
  * @directory: the directory where the excutable file is
  */
 
-void exec_and_free(char *command, char **tokens, char *directory)
-{
-	if (execve(directory, tokens, NULL) == -1)
-	{
+void exec_and_free(char *command, char **tokens, char *directory) {
+  if (execve(directory, tokens, NULL) == -1) {
 
-		perror(command);
-		freecommands(command, tokens, directory);
-		exit(EXIT_FAILURE);
-	}
+    perror(command);
+    freecommands(command, tokens, directory);
+    exit(EXIT_FAILURE);
+  }
 }
-

@@ -76,11 +76,11 @@ void setenv_builtin(char **args, int argc, char *command) {
   tempenv[tempsize] = newvariable;
   tempenv[tempsize + 1] = NULL;
   environ = tempenv;
-  printf("%s\n", tempenv[tempsize]);
 
-  /* if (setenv(args[1], args[2], 1) != 0) {
-    _puts("Failed to set environment variable\n");
-  } */
+  if (envargssignal == 1) {
+    free(args[2]);
+    free(args);
+  }
 }
 
 /**

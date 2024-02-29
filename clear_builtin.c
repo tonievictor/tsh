@@ -7,12 +7,10 @@
  * @argc: Number of arguments in the 'args' array.
  * @command: The built-in command (unused in this function).
  */
-void clear_builtin(char **args, int argc, char *command)
-{
-	(void)argc;
-	(void)command;
-	(void)args;
+void clear_builtin(char **args, int argc, char *command) {
+  (void)argc;
+  (void)command;
+  (void)args;
 
-	_puts("\033c");
+  _puts("\033c");
 }
-

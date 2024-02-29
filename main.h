@@ -14,6 +14,7 @@
 extern char **environ;
 extern char *newvariable;
 extern int envfreesignal;
+extern int envargssignal;
 
 #define MAX_PATH_LENGTH 1024
 

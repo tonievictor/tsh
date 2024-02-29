@@ -1,5 +1,5 @@
-#include "utilities.h"
 #include "main.h"
+#include "utilities.h"
 
 /**
  * handle_sigint - Signal handler for SIGINT (Ctrl+C)
@@ -7,11 +7,10 @@
  *
  * Return: Nothing
  */
-void handle_sigint(int sig)
-{
-	(void)sig;
-	_putchar('\n');
-	print_dollar();
+void handle_sigint(int sig) {
+  (void)sig;
+  _putchar('\n');
+  print_dollar();
 }
 
 /**
@@ -20,11 +19,10 @@ void handle_sigint(int sig)
  *
  * Return: Nothing
  */
-void handle_sigquit(int sig)
-{
-	(void)sig;
-	_putchar('\n');
-	print_dollar();
+void handle_sigquit(int sig) {
+  (void)sig;
+  _putchar('\n');
+  print_dollar();
 }
 
 /**
@@ -33,10 +31,8 @@ void handle_sigquit(int sig)
  *
  * Return: Nothing
  */
-void handle_sigstp(int sig)
-{
-	(void)sig;
-	_puts("\n");
-	print_dollar();
+void handle_sigstp(int sig) {
+  (void)sig;
+  _puts("\n");
+  print_dollar();
 }
-

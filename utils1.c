@@ -7,25 +7,23 @@
  * Return: The integer value of the string.
  */
 
-int _atoi(const char *str)
-{
-	int i;
-	unsigned int num;
+int _atoi(const char *str) {
+  int i;
+  unsigned int num;
 
-	i = 0;
-	num = 0;
+  i = 0;
+  num = 0;
 
-	while (str[i] != '\0')
-	{
-		if (str[i] == '-')
-			return (1);
-		else if (str[i] >= '0' && str[i] <= '9')
-			num = (num * 10) + (str[i] - '0');
-		else
-			return (1);
-		i++;
-	}
-	return (num);
+  while (str[i] != '\0') {
+    if (str[i] == '-')
+      return (1);
+    else if (str[i] >= '0' && str[i] <= '9')
+      num = (num * 10) + (str[i] - '0');
+    else
+      return (1);
+    i++;
+  }
+  return (num);
 }
 
 /**
@@ -42,24 +40,19 @@ int _atoi(const char *str)
  * than, to match, or be greater than str2.
  */
 
-int _strncmp(const char *str1, const char *str2, size_t n)
-{
+int _strncmp(const char *str1, const char *str2, size_t n) {
 
-	while (n > 0 && *str1 && *str2 && *str1 == *str2)
-	{
-		str1++;
-		str2++;
-		n--;
-	}
+  while (n > 0 && *str1 && *str2 && *str1 == *str2) {
+    str1++;
+    str2++;
+    n--;
+  }
 
-	if (n == 0)
-	{
-		return (0);
-	}
-	else
-	{
-		return (1);
-	}
+  if (n == 0) {
+    return (0);
+  } else {
+    return (1);
+  }
 }
 
 /**
@@ -67,16 +60,14 @@ int _strncmp(const char *str1, const char *str2, size_t n)
  * @s: String pointer to the string whose length is to be returned
  * Return: Length of string
  */
-int _strlen(const char *s)
-{
-	int lenstr = 0;
+int _strlen(const char *s) {
+  int lenstr = 0;
 
-	while (*s != '\0')
-	{
-		lenstr++;
-		s++;
-	}
-	return (lenstr);
+  while (*s != '\0') {
+    lenstr++;
+    s++;
+  }
+  return (lenstr);
 }
 
 /**
@@ -96,28 +87,25 @@ int _strlen(const char *s)
  * duplicated string when it is no longer needed.
  */
 
-char *_strdup(char *src)
-{
-	char *dest;
-	size_t len;
+char *_strdup(char *src) {
+  char *dest;
+  size_t len;
 
-	if (src == NULL)
-	{
-		return (NULL);
-	}
+  if (src == NULL) {
+    return (NULL);
+  }
 
-	len = strlen(src);
+  len = strlen(src);
 
-	dest = (char *)malloc((len + 1) * sizeof(char));
+  dest = (char *)malloc((len + 1) * sizeof(char));
 
-	if (dest == NULL)
-	{
-		return (NULL);
-	}
+  if (dest == NULL) {
+    return (NULL);
+  }
 
-	_strcpy(dest, src);
+  _strcpy(dest, src);
 
-	return (dest);
+  return (dest);
 }
 
 /**
@@ -128,16 +116,12 @@ char *_strdup(char *src)
  * Return: 0 if a non-white space is encountered else 1
  */
 
-int _stripstr(char *command)
-{
-	while (*command)
-	{
-		if (*command != ' ')
-		{
-			return (0);
-		}
-		command++;
-	}
-	return (1);
+int _stripstr(char *command) {
+  while (*command) {
+    if (*command != ' ') {
+      return (0);
+    }
+    command++;
+  }
+  return (1);
 }
-
