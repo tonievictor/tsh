@@ -1,4 +1,4 @@
-# Simple Shell
+# tsh
 
 ## Overview
 
@@ -23,13 +23,13 @@ A simple Unix shell written in C that supports both interactive and non-interact
 **Clone the repository**
 
 ```bash
-git clone https://github.com/Tonie-NG/simple_shell.git
+git clone https://github.com/tonievictor/tsh.git
 ```
 
 **Change directory to the project:**
 
 ```bash
-cd simple_shell
+cd tsh
 ```
 
 ### Compiling
@@ -37,13 +37,13 @@ cd simple_shell
 Compile the shell using the following command:
 
 ```bash
-gcc *.c -o simple_shell
+gcc *.c -o tsh
 ```
 
 For more strictness, you could use this:
 
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o tsh
 ```
 
 ## Usage
@@ -53,7 +53,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 Simply run the executable, and the shell will start accepting commands.
 
 ```bash
-./simple_shell
+./tsh
 ```
 
 2. Non-Interactive Mode:
@@ -61,7 +61,7 @@ Simply run the executable, and the shell will start accepting commands.
 Provide a valid command using echo and pipe it to the executable file.
 
 ```bash
-echo "/bin/ls" | ./simple_shell
+echo "/bin/ls" | ./tsh
 ```
 
 ## Examples
@@ -71,7 +71,7 @@ echo "/bin/ls" | ./simple_shell
 To start the shell:
 
    ```bash
-   ./simple_shell
+   ./tsh
    ```
 
 Provide the command path:
@@ -93,10 +93,10 @@ exit
 Provide the command path via pipe:
 
 ```bash
-echo "/bin/ls" | ./simple_shell
+echo "/bin/ls" | ./tsh
 ```
 
 Provide the command and the shell handles the path
 ```bash
-echo "ls" | ./simple_shell
+echo "ls" | ./tsh
 ```
